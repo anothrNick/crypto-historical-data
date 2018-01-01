@@ -16,8 +16,8 @@ $ make up
 ```
 
 #### TODO
-* cron to gather data from [Coin Market Cap](https://coinmarketcap.com/api/)
-  * `update_ticker.go`
+* Positions
+* Graph market history
 
 #### API Endpoints
 * [Get latest tickers - GET /api/ticker](#get-apiticker)   

@@ -10,7 +10,7 @@ type Ticker struct {
 	CryptoID		string 		`json:"id"`
 	Name 			string 		`json:"name"`
 	Symbol 			string 		`json:"symbol"`
-	Rank			string 		`json:"rank"`
+	Rank			int 		`json:"rank"`
 	PriceUSD		string 		`json:"price_usd"`
 	PriceBTC		string 		`json:"price_btc"`
 	PercentChange	string 		`json:"percent_change_1h"`
@@ -22,7 +22,7 @@ type TransformedTicker struct {
 	CryptoID		string 		`json:"id"`
 	Name 			string 		`json:"name"`
 	Symbol 			string 		`json:"symbol"`
-	Rank			string 		`json:"rank"`
+	Rank			int 		`json:"rank"`
 	PriceUSD		string 		`json:"price_usd"`
 	PriceBTC		string 		`json:"price_btc"`
 	PercentChange	string 		`json:"percent_change_1h"`

@@ -8,7 +8,6 @@ import (
 	"github.com/anothrnick/crypto-historical-data/models"
 	"github.com/anothrnick/crypto-historical-data/middleware"
   	"net/http"
-  	"log"
 	"encoding/json"
     "time"
     "strconv"
@@ -68,7 +67,7 @@ func UpdateTicker() {
     // Build the request
 	req, err := http.NewRequest("GET", TICKER_URL, nil)
 	if err != nil {
-		log.Fatal("NewRequest: ", err)
+        panic(err)
 		return
 	}
 
@@ -78,7 +77,7 @@ func UpdateTicker() {
 	// returns an HTTP response
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Fatal("Do: ", err)
+        panic(err)
 		return
 	}
 
@@ -91,7 +90,7 @@ func UpdateTicker() {
 
 	// Use json.Decode for reading streams of JSON data
 	if err := json.NewDecoder(resp.Body).Decode(&items); err != nil {
-		log.Println(err)
+		panic(err)
 	}
 
     created := time.Now().Unix()
@@ -103,11 +102,16 @@ func UpdateTicker() {
 	    }
 	    updated := time.Unix(timeInt, 0)
 
+	    rank, err := strconv.Atoi(ticker.Rank)
+		if err != nil {
+	        panic(err)
+	    }
+
 		newTick := models.Ticker{
 						CryptoID: ticker.ID,
 						Name: ticker.Name,
 						Symbol: ticker.Symbol,
-						Rank: strconv.Atoi(ticker.Rank),
+						Rank: rank,
 						PriceUSD: ticker.PriceUSD,
 						PriceBTC: ticker.PriceBTC,
 						PercentChange: ticker.PercentChange1h,

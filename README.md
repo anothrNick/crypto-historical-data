@@ -15,9 +15,6 @@ $ make build
 $ make up
 ```
 
-#### TODO
-* [ ] Pretty print JSON response
-
 #### API Endpoints
 * [Get latest tickers - GET /api/ticker](#get-apiticker)   
 * [Get history for a specific crypto - GET /api/ticker/:id](#get-apitickerid)             

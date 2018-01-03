@@ -18,7 +18,7 @@ func GetAllTickers(c *gin.Context) {
 
 	// query for all tickers with last updated
 	if err := db.Order("created desc, rank asc").Find(&tickers).Error; err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error finding tickers."})
+		c.IndentedJSON(http.StatusInternalServerError, gin.H{"error": "Error finding tickers."})
 		return
 	}
 
@@ -39,7 +39,7 @@ func GetAllTickers(c *gin.Context) {
 				)
 	}
 
-	c.JSON(http.StatusOK, gin.H{"items": _tickers})
+	c.IndentedJSON(http.StatusOK, gin.H{"items": _tickers})
 }
 
 func GetLatestTickers(c *gin.Context) {
@@ -53,13 +53,13 @@ func GetLatestTickers(c *gin.Context) {
     defer db.Close()
     // get latest updated value
     if err := db.Order("created desc, rank asc").First(&ticker).Error; err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error finding ticker."})
+		c.IndentedJSON(http.StatusInternalServerError, gin.H{"error": "Error finding ticker."})
 		return
 	}
 
 	// query for all tickers with last updated
 	if err := db.Where("created = ?", ticker.Created).Order("rank asc").Find(&tickers).Error; err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error finding tickers."})
+		c.IndentedJSON(http.StatusInternalServerError, gin.H{"error": "Error finding tickers."})
 		return
 	}
 
@@ -80,7 +80,7 @@ func GetLatestTickers(c *gin.Context) {
 				)
 	}
 
-	c.JSON(http.StatusOK, gin.H{"items": _tickers})
+	c.IndentedJSON(http.StatusOK, gin.H{"items": _tickers})
 }
 
 func GetTickerID(c *gin.Context) {
@@ -93,7 +93,7 @@ func GetTickerID(c *gin.Context) {
 	db := db.Database()
     defer db.Close()
 	if err := db.Where("crypto_id = ?", ticker_id).Order("created desc").Limit(12).Find(&tickers).Error; err != nil {
-		c.JSON(http.StatusNotFound, gin.H{})
+		c.IndentedJSON(http.StatusNotFound, gin.H{})
 		return
 	}
 
@@ -114,5 +114,5 @@ func GetTickerID(c *gin.Context) {
 				)
 	}
 
-	c.JSON(http.StatusOK, gin.H{"items": _tickers})
+	c.IndentedJSON(http.StatusOK, gin.H{"items": _tickers})
 }

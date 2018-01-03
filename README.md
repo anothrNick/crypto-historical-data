@@ -16,8 +16,7 @@ $ make up
 ```
 
 #### TODO
-* Positions
-* Graph market history
+* [ ] Pretty print JSON response
 
 #### API Endpoints
 * [Get latest tickers - GET /api/ticker](#get-apiticker)   

@@ -31,7 +31,7 @@ type TickerItem struct {
     LastUpdated 		string `json:"last_updated"`
 }
 
-const TICKER_URL = "https://api.coinmarketcap.com/v1/ticker/"
+const TICKER_URL = "https://api.coinmarketcap.com/v1/ticker/?limit=2000"
 
 func main() {
 	//Migrate schema
